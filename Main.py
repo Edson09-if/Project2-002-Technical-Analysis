@@ -1,12 +1,14 @@
 import pandas as pd
-from Utils import optimize
-from Backtest import BacktestN
+from Utils import Position
+from Backtest import backtestN
 import optuna
+from typing import List
+from itertools import combinations
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     #optimize()
-    data = pd.read_csv("aapl_5m_train.csv").dropna()
-    data = data[:5000]
+    data = pd.read_csv("/Users/edson33/Desktop/DecimoSemestre/aapl_5m_train.csv").dropna()
+    data = data[:10000]
 
 indicators_list = ['RSI', 'MACD', 'BOLL', "ADX", "SMA"]
 all_combinations = []

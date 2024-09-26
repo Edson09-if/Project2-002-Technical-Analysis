@@ -6,8 +6,8 @@ from typing import List
 from itertools import combinations
 #from matplotlib import pyplot as plt
 
-data = pd.read_csv("/Users/edson33/Desktop/DecimoSemestre/btc_project_train.csv").dropna()
-# data = data[:25000]
+data = pd.read_csv("/Users/edson33/Desktop/DecimoSemestre/aapl_5m_train.csv").dropna()
+data = data[:10000]
 
 def backtestN(indicators: list, data: pd.DataFrame, sl: float, tp: float,
               rsi_window: int = 0, rsi_lower: int = 0, rsi_upper: int = 0,
