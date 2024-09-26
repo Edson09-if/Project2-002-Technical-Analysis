@@ -42,3 +42,12 @@ for combo in all_combinations:
             rsi_window = trial.suggest_int("rsi_window", 5, 50)
             rsi_lower = trial.suggest_float("rsi_lower", 10, 40)
             rsi_upper = trial.suggest_float("rsi_upper", 60, 90)
+
+        if "MACD" in indicators:
+            window_fast_macd = trial.suggest_int("window_fast_macd", 8, 15)
+            window_slo_macd = trial.suggest_int("window_slo_macd", 18, 30)
+            win_sig_macd = trial.suggest_int("win_sig_macd", 5, 14)
+
+        if "BOLL" in indicators:
+            boll_wind = trial.suggest_int("boll_wind", 12, 25)
+            boll_wind_dev = trial.suggest_float("boll_wind_dev", 1, 3)
