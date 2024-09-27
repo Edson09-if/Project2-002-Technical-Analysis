@@ -51,3 +51,20 @@ for combo in all_combinations:
         if "BOLL" in indicators:
             boll_wind = trial.suggest_int("boll_wind", 12, 25)
             boll_wind_dev = trial.suggest_float("boll_wind_dev", 1, 3)
+
+        if "ADX" in indicators:
+            adx_window = trial.suggest_int("adx_window", 7, 30)
+
+        if "SMA" in indicators:
+            short_sma_wind = trial.suggest_int("short_sma_wind", 5, 50)
+            long_sma_wind = trial.suggest_int("long_sma_wind", 50, 200)
+
+
+        final_cap = backtestN(indicators, data, sl, tp, rsi_window, rsi_lower, rsi_upper,
+              boll_wind, boll_wind_dev,
+             window_slo_macd, window_fast_macd, win_sig_macd, n_shares=40)
+        return final_cap
+
+
+    study = optuna.create_study(direction="maximize")
+    study.optimize(lambda trial: optimize(trial, combo, data),n_trial=3)
