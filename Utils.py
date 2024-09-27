@@ -1,5 +1,25 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def plot_portfolio_value(portfolio_value, data: pd.DataFrame):
+    initial_investment = 1_000_000
+    data = data.copy()
+    initial_price = data['Close'].iloc[0]
+    shares_bought = initial_investment / initial_price
+    data['Portfolio_Value_Pasive'] = shares_bought * data['Close']
+
+    plt.figure(figsize=(12, 6))
+    plt.plot(portfolio_value, label='Optimize Portfolio Value')
+    plt.plot(data['Portfolio_Value_Pasive'], label='Pasive Portfolio Value')
+    plt.title('Portfolio Value')
+    plt.xlabel('Days')
+    plt.ylabel('USD')
+    plt.legend()
+    plt.show()
+    plt.grid()
+
 class Position:
-    def _init_(self, ticker:str, price:float, n_shares: int, timestamp:float):
+    def __init__(self, ticker:str, price:float, n_shares: int, timestamp:float):
         self.ticker = ticker
         self.price =price
         self.n_shares = n_shares
@@ -56,19 +76,3 @@ class Plots:
         plt.grid()
         plt.show()
 
-    def plot_portfolio_value(portfolio_value, data: pd.DataFrame):
-        initial_investment = 1_000_000
-        data = data.copy()
-        initial_price = data['Close'].iloc[0]
-        shares_bought = initial_investment / initial_price
-        data['Portfolio_Value_Pasive'] = shares_bought * data['Close']
-
-        plt.figure(figsize=(12, 6))
-        plt.plot(portfolio_value, label='Optimize Portfolio Value')
-        plt.plot(data['Portfolio_Value_Pasive'], label='Pasive Portfolio Value')
-        plt.title('Portfolio Value')
-        plt.xlabel('Days')
-        plt.ylabel('USD')
-        plt.legend()
-        plt.show()
-        plt.grid()
